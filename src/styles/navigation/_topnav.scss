@@ -4,6 +4,8 @@
   padding-left: 0;
   height: $topnav-base-height;
   z-index: $zindex-topnav;
+  background: rgb(62,58,180);
+  background: linear-gradient(90deg, rgba(62,58,180,1) 0%, rgba(29,109,253,1) 50%, rgba(69,229,252,1) 100%);
   .navbar-brand {
       width: $sidenav-base-width;
       padding-left: $navbar-padding-x;
