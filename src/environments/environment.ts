@@ -4,6 +4,9 @@
 
 export const environment = {
     production: false,
+
+    API_URL_BACK: 'https://uiflx150nd.execute-api.us-east-1.amazonaws.com/dev/pocBackend',
+    // API_URL_BACK: 'http://localhost:3003/pocBackend',
 };
 
 /*
