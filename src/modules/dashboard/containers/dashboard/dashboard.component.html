@@ -63,14 +63,38 @@
 
 
     <!-- Accordion -->
-      <button class="btn btn-sm btn-outline-primary mr-2" (click)="acc.toggle('toggle-1')">Accordion #1</button>
-      <button class="btn btn-sm btn-outline-primary mr-2" (click)="acc.toggle('toggle-2')">Accordion #2</button>
+      <!-- <button class="btn btn-sm btn-outline-primary mr-2" (click)="acc.toggle('toggle-1')">Accordion #1</button> -->
     <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
         <div class="container" *ngFor= "let email of displayTela">
-        <ngb-panel title="{{email.dataChegadaOuEnvio}}  -  {{email.assunto}}">
-          <ng-template ngbPanelContent>
-            {{email.emailBody}}
-            <button type="button" class="btn btn-primary" style="float: right; margin-top: 40px; margin-bottom: 15px;">Enviar e finalizar e-mail</button>
+        <ngb-panel (click)="getHistorico(email.assunto)" title="{{email.assunto}} - Remetente: {{email.remetente}} - Data: {{email.dataChegadaOuEnvio}}" >
+           
+          <ng-template ngbPanelContent>            
+            <table>
+                <thead>
+                    <tr>
+                        <th class="col-lg-1">Data</th>                        
+                        <th class="col-lg-3">Assunto</th>                        
+                        <th class="col-lg-7">Mensagem</th>
+                        <th class="col-lg-1">Responder</th>
+                    </tr>
+                </thead>
+                <!-- <tbody *ngIf="historico.length > 0"> -->
+                <tbody>
+                    <!-- <tr *ngFor="let detalhe of historico"> -->
+                    <tr>
+                        <td>{{email.dataChegadaOuEnvio}} </td>                        
+                        <td>{{email.assunto}} </td>                        
+                        <td>{{email.emailBody}} </td>
+                        <td><a href={{email.webLink}}></a>Responder</td>
+                    </tr>
+                </tbody>
+                <!-- <tbody *ngIf="historico.length === 0">
+                    <tr>
+                        <td rowspan="6">Não existem mais emails nesta conversa!</td>
+                    </tr>
+                </tbody> -->
+            </table>            
+            <button type="button" class="btn btn-primary" style="float: right; margin-top: 40px; margin-bottom: 15px;">Enviar e-mail</button>
           </ng-template>
         </ngb-panel>        
         </div>

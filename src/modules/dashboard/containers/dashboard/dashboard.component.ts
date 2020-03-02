@@ -13,6 +13,7 @@ export class DashboardComponent implements OnInit {
     public emailsNaoLidosCount = [];
     public emailsFiltrados = [];
     public displayTela = [];
+    public historico = [];
 
     // constructor(private service: DashboardService, private loader: LoaderService) {}
     constructor(private service: DashboardService) {}
@@ -72,5 +73,10 @@ export class DashboardComponent implements OnInit {
     async show1dia() {
         console.log('24hs OK');
         this.displayTela = await this.service.getEmailsNaoLidos1dia();
+    }
+
+    async getHistorico(assunto: string) {
+        console.log('getHistorico OK');
+        this.historico = await this.service.postHistoricoEmail(assunto);
     }
 }
