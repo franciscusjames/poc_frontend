@@ -3,3 +3,7 @@
 #userDropdown {
     cursor: pointer;
 }
+
+::ng-deep .navbar-dark .navbar-nav .nav-link {
+    color: #3D3CB6;
+}
