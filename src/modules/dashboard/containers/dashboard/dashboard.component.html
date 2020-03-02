@@ -11,33 +11,51 @@
 <!-- Cards -->
 <div class="row">
     <div class="col-xl-2 col-md-6">
-        <sb-card-view-details link="/dashboard" background="dia10">
-            <div class="card-body">10 Dias</div>
+        <sb-card-view-details link="/dashboard" background="dia10" >
+            <div class="card-body" (click)="show10dias()">10 Dias</div>
+            <div class="card-footer d-flex align-items-center justify-content-between">
+                <div style="font-size: 12px;">{{emailsNaoLidosCount[0].total10}} e-mails não lidos</div>
+            </div>
         </sb-card-view-details>
     </div>
     <div class="col-xl-2 col-md-6">
         <sb-card-view-details link="/dashboard" background="dia07">
-            <div class="card-body">7 Dias</div>
+            <div class="card-body" (click)="show7dias()">7 Dias</div>
+            <div class="card-footer d-flex align-items-center justify-content-between">
+                <div style="font-size: 12px;">{{emailsNaoLidosCount[0].total7}} e-mails não lidos</div>
+            </div>
         </sb-card-view-details>
     </div>
     <div class="col-xl-2 col-md-6">
         <sb-card-view-details link="/dashboard" background="dia05">
-            <div class="card-body">5 Dias</div>
+            <div class="card-body" (click)="show5dias()">5 Dias</div>
+            <div class="card-footer d-flex align-items-center justify-content-between">
+                <div style="font-size: 12px;">{{emailsNaoLidosCount[0].total5}} e-mails não lidos</div>
+            </div>
         </sb-card-view-details>
     </div>
     <div class="col-xl-2 col-md-6">
         <sb-card-view-details link="/dashboard" background="dia03">
-            <div class="card-body">3 Dias</div>
+            <div class="card-body" (click)="show3dias()">3 Dias</div>
+            <div class="card-footer d-flex align-items-center justify-content-between">
+                <div style="font-size: 12px;">e-mails não lidos: {{emailsNaoLidosCount[0].total3}}</div>
+            </div>
         </sb-card-view-details>
     </div>
     <div class="col-xl-2 col-md-6">
         <sb-card-view-details link="/dashboard" background="dia02">
-            <div class="card-body">2 Dias</div>
+            <div class="card-body" (click)="show2dias()">2 Dias</div>
+            <div class="card-footer d-flex align-items-center justify-content-between">
+                <div style="font-size: 12px;">e-mails não lidos: {{emailsNaoLidosCount[0].total2}}</div>
+            </div>
         </sb-card-view-details>
     </div>
     <div class="col-xl-2 col-md-6">
         <sb-card-view-details link="/dashboard" background="dia01">
-            <div class="card-body">24Horas</div>
+            <div class="card-body" (click)="show1dia()">24Horas</div>
+            <div class="card-footer d-flex align-items-center justify-content-between">
+                <div style="font-size: 12px;">e-mails não lidos: {{emailsNaoLidosCount[0].total1}}</div>
+            </div>
         </sb-card-view-details>
     </div>
 </div>
@@ -66,6 +84,16 @@
       </ngb-accordion>
       <button class="btn btn-sm btn-outline-primary mr-2" (click)="acc.toggle('toggle-1')">Accordion #1</button>
       <button class="btn btn-sm btn-outline-primary mr-2" (click)="acc.toggle('toggle-2')">Accordion #2</button>
+    <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+        <div class="container" *ngFor= "let email of displayTela">
+        <ngb-panel title="{{email.dataChegadaOuEnvio}}  -  {{email.assunto}}">
+          <ng-template ngbPanelContent>
+            {{email.emailBody}}
+          </ng-template>
+        </ngb-panel>        
+        </div>
+    </ngb-accordion>
+
 
 <!-- Gráficos -->
     <!-- <sb-dashboard-charts></sb-dashboard-charts> -->

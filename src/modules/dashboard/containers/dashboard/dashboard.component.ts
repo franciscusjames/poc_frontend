@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
+// import { LoaderService } from '../../../../app/loading/loader.service';
 import { DashboardService } from '../../services/dashboard.service';
 
 @Component({
@@ -9,18 +10,67 @@ import { DashboardService } from '../../services/dashboard.service';
     styleUrls: ['dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
+    public emailsNaoLidosCount = [];
+    public emailsFiltrados = [];
+    public displayTela = [];
+
+    // constructor(private service: DashboardService, private loader: LoaderService) {}
     constructor(private service: DashboardService) {}
 
     async ngOnInit() {
+        // this.loader.show();
         await this.fillEmailsFiltrados();
+        await this.fillEmailsCount();
+        // this.loader.hide();
     }
 
     async fillEmailsFiltrados() {
         try {
-            const emailsFiltrados = await this.service.getEmailsFiltrados();
-            console.log('emailsFiltrados: ', emailsFiltrados);
+            this.emailsFiltrados = await this.service.getEmailsFiltrados();
+            console.log('emailsFiltrados: ', this.emailsFiltrados);
         } catch (err) {
             console.log('Error: ', err);
         }
+    }
+
+    async fillEmailsCount() {
+        try {
+            this.emailsNaoLidosCount = await this.service.getEmailsNaoLidosCount();
+            console.log('emailsNaoLidosCount: ', this.emailsNaoLidosCount);
+        } catch (err) {
+            console.log('Error: ', err);
+        }
+    }
+
+    async show10dias() {
+        // this.loader.show();
+        console.log('10 dias OK');
+        this.displayTela = await this.service.getEmailsNaoLidos10dias();
+        // this.loader.hide();
+    }
+
+    async show7dias() {
+        console.log('7 dias OK');
+        this.displayTela = await this.service.getEmailsNaoLidos7dias();
+    }
+
+    async show5dias() {
+        console.log('5 dias OK');
+        this.displayTela = await this.service.getEmailsNaoLidos5dias();
+    }
+
+    async show3dias() {
+        console.log('3 dias OK');
+        this.displayTela = await this.service.getEmailsNaoLidos3dias();
+    }
+
+    async show2dias() {
+        console.log('2 dias OK');
+        this.displayTela = await this.service.getEmailsNaoLidos2dias();
+    }
+
+    async show1dia() {
+        console.log('24hs OK');
+        this.displayTela = await this.service.getEmailsNaoLidos1dia();
     }
 }
