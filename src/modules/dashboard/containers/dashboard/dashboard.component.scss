@@ -24,18 +24,21 @@
   }
 
   ::ng-deep .dia10{
-    background: rgb(251,0,0);
-    background: linear-gradient(0deg, rgba(251,0,0,1) 0%, rgba(168,11,11,1) 100%);
+    background: rgb(88,88,88);
+background: linear-gradient(0deg, rgba(88,88,88,1) 0%, rgba(0,0,0,1) 100%);
+    
   }
   
   ::ng-deep .dia07{
-    background: rgb(251,172,0);
-background: linear-gradient(0deg, rgba(251,172,0,1) 0%, rgba(168,90,11,1) 100%);
+
+    background: rgb(242,5,89);
+background: linear-gradient(0deg, rgba(242,5,89,1) 0%, rgba(238,26,26,1) 100%);
+    
   }
 
   ::ng-deep .dia05{
-    background: rgb(251,227,0);
-background: linear-gradient(0deg, rgba(251,227,0,1) 0%, rgba(168,153,11,1) 100%);
+    background: rgb(251,172,0);
+    background: linear-gradient(0deg, rgba(251,172,0,1) 0%, rgba(168,90,11,1) 100%);
   }
 
   ::ng-deep .dia03{
