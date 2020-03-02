@@ -62,26 +62,7 @@
 <!-- Final Cards -->
 
 
-    <ngb-accordion #acc="ngbAccordion">
-        <ngb-panel id="toggle-1" title="Assunto E-mail">
-          <ng-template ngbPanelContent>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam et fringilla tortor, in scelerisque elit. 
-                Vivamus turpis velit, malesuada sed augue et, vehicula faucibus dolor. Cras non odio et purus convallis 
-                rhoncus hendrerit ultrices velit. Suspendisse nec viverra quam, sed gravida erat. Suspendisse mattis 
-                porta dui, non scelerisque tortor mattis vel. Mauris commodo tempor dui ut lacinia. 
-                Nam ac ligula condimentum, iaculis eros et, mollis elit. 
-              <button type="button" class="btn btn-primary" style="float: right; margin-top: 40px;">Enviar e finalizar e-mail</button>
-          </ng-template>
-        </ngb-panel>
-        <ngb-panel id="toggle-2" title="Assunto E-mail">
-            <ng-template ngbPanelContent>
-                    Lorem ipsum dolor sit amet, ac maximus ligula congue. Aliquam at ornare leo, eu finibus augue. 
-                    Aenean et ultrices leo. Etiam ut facilisis tortor, nec blandit nunc.
-                    Mauris at libero consectetur, hendrerit libero vel, pellentesque augue.
-              <button type="button" class="btn btn-primary" style="float: right; margin-top: 40px;">Enviar e finalizar e-mail</button>
-            </ng-template>
-          </ngb-panel>
-      </ngb-accordion>
+    <!-- Accordion -->
       <button class="btn btn-sm btn-outline-primary mr-2" (click)="acc.toggle('toggle-1')">Accordion #1</button>
       <button class="btn btn-sm btn-outline-primary mr-2" (click)="acc.toggle('toggle-2')">Accordion #2</button>
     <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
@@ -89,11 +70,12 @@
         <ngb-panel title="{{email.dataChegadaOuEnvio}}  -  {{email.assunto}}">
           <ng-template ngbPanelContent>
             {{email.emailBody}}
+            <button type="button" class="btn btn-primary" style="float: right; margin-top: 40px; margin-bottom: 15px;">Enviar e finalizar e-mail</button>
           </ng-template>
         </ngb-panel>        
         </div>
     </ngb-accordion>
-
+  <!-- Final Accordion -->
 
 <!-- Gráficos -->
     <!-- <sb-dashboard-charts></sb-dashboard-charts> -->
