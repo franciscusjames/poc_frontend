@@ -55,4 +55,8 @@ export class DashboardService {
     public putFinalizarEmail = async (id: number): Promise<any> => {
         return this.http.put(`${environment.API_URL_BACK}/finalizarEmail`, { id }).toPromise();
     };
+
+    public getEmailsNaoLidosCount = async (): Promise<any> => {
+        return this.http.get(`${environment.API_URL_BACK}/emailsNaoLidosCount`).toPromise();
+    };
 }

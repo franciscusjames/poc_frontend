@@ -4,11 +4,16 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+// import { LoaderService } from './loading/loader.service';
+// import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
+    // declarations: [AppComponent, LoadingComponent],
     declarations: [AppComponent],
     imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+    // providers: [LoaderService],
     providers: [],
     bootstrap: [AppComponent],
+    // entryComponents: [LoadingComponent],
 })
 export class AppModule {}
