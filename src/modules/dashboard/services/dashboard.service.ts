@@ -52,8 +52,8 @@ export class DashboardService {
         return this.http.get(`${environment.API_URL_BACK}/emailsNaoLidos10dias`).toPromise();
     };
 
-    public putFinalizarEmail = async (id: number): Promise<any> => {
-        return this.http.put(`${environment.API_URL_BACK}/finalizarEmail`, { id }).toPromise();
+    public putFinalizarEmail = async (param: string): Promise<any> => {
+        return this.http.put(`${environment.API_URL_BACK}/finalizarEmail`, { param }).toPromise();
     };
 
     public getEmailsNaoLidosCount = async (): Promise<any> => {
