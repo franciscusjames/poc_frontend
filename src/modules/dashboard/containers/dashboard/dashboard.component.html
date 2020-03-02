@@ -45,18 +45,27 @@
 
 
     <ngb-accordion #acc="ngbAccordion">
-        <ngb-panel title="Assunto E-mail">
+        <ngb-panel id="toggle-1" title="Assunto E-mail">
           <ng-template ngbPanelContent>
-              E-mail #1
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam et fringilla tortor, in scelerisque elit. 
+                Vivamus turpis velit, malesuada sed augue et, vehicula faucibus dolor. Cras non odio et purus convallis 
+                rhoncus hendrerit ultrices velit. Suspendisse nec viverra quam, sed gravida erat. Suspendisse mattis 
+                porta dui, non scelerisque tortor mattis vel. Mauris commodo tempor dui ut lacinia. 
+                Nam ac ligula condimentum, iaculis eros et, mollis elit. 
+              <button type="button" class="btn btn-primary" style="float: right; margin-top: 40px;">Enviar e finalizar e-mail</button>
           </ng-template>
         </ngb-panel>
-        <ngb-panel title="Assunto E-mail">
+        <ngb-panel id="toggle-2" title="Assunto E-mail">
             <ng-template ngbPanelContent>
-              E-mail #1
+                    Lorem ipsum dolor sit amet, ac maximus ligula congue. Aliquam at ornare leo, eu finibus augue. 
+                    Aenean et ultrices leo. Etiam ut facilisis tortor, nec blandit nunc.
+                    Mauris at libero consectetur, hendrerit libero vel, pellentesque augue.
+              <button type="button" class="btn btn-primary" style="float: right; margin-top: 40px;">Enviar e finalizar e-mail</button>
             </ng-template>
           </ngb-panel>
       </ngb-accordion>
-
+      <button class="btn btn-sm btn-outline-primary mr-2" (click)="acc.toggle('toggle-1')">Accordion #1</button>
+      <button class="btn btn-sm btn-outline-primary mr-2" (click)="acc.toggle('toggle-2')">Accordion #2</button>
 
 <!-- Gráficos -->
     <!-- <sb-dashboard-charts></sb-dashboard-charts> -->
