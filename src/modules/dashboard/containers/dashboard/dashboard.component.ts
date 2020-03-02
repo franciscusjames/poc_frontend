@@ -36,6 +36,10 @@ export class DashboardComponent implements OnInit {
         }
     }
 
+    async finalizarEmail(assunto: string) {
+        const finalizarEmail = await this.service.putFinalizarEmail(assunto);
+    }
+
     async fillEmailsCount() {
         try {
             this.emailsNaoLidosCount = await this.service.getEmailsNaoLidosCount();
