@@ -49,47 +49,49 @@ export class DashboardComponent implements OnInit {
         // this.loader.show();
         console.log('10 dias OK');
         this.displayTela = await this.service.getEmailsNaoLidos10dias();
-        await this.formatData();
+        // await this.formatData(this.displayTela);
         // this.loader.hide();
     }
 
     async show7dias() {
         console.log('7 dias OK');
         this.displayTela = await this.service.getEmailsNaoLidos7dias();
-        await this.formatData();
+        // await this.formatData(this.displayTela);
     }
 
     async show5dias() {
         console.log('5 dias OK');
         this.displayTela = await this.service.getEmailsNaoLidos5dias();
-        await this.formatData();
+        // await this.formatData(this.displayTela);
     }
 
     async show3dias() {
         console.log('3 dias OK');
         this.displayTela = await this.service.getEmailsNaoLidos3dias();
-        await this.formatData();
+        // await this.formatData(this.displayTela);
     }
 
     async show2dias() {
         console.log('2 dias OK');
         this.displayTela = await this.service.getEmailsNaoLidos2dias();
-        await this.formatData();
+        // await this.formatData(this.displayTela);
     }
 
     async show1dia() {
         console.log('24hs OK');
         this.displayTela = await this.service.getEmailsNaoLidos1dia();
-        await this.formatData();
+        // await this.formatData(this.displayTela);
     }
 
     async getHistorico(assunto: string) {
         console.log('getHistorico OK');
+        this.historico = [];
         this.historico = await this.service.postHistoricoEmail(assunto);
+        await this.formatData(this.historico);
     }
 
-    async formatData() {
-        this.displayTela.map((email: { dataChegadaOuEnvio: { toString: () => string } }) => {
+    async formatData(param: any) {
+        param.map((email: { dataChegadaOuEnvio: { toString: () => string } }) => {
             email.dataChegadaOuEnvio = email.dataChegadaOuEnvio
                 .toString()
                 .replace('T', '  ')
