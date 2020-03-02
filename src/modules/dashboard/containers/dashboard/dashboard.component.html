@@ -66,7 +66,7 @@
       <!-- <button class="btn btn-sm btn-outline-primary mr-2" (click)="acc.toggle('toggle-1')">Accordion #1</button> -->
     <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
         <div class="container" *ngFor= "let email of displayTela">
-        <ngb-panel (click)="getHistorico(email.assunto)" title="{{email.assunto}} - Data: {{email.dataChegadaOuEnvio}}" >           
+        <ngb-panel (click)="getHistorico(email.assunto)" title="{{email.assunto}}" >           
           <ng-template ngbPanelContent>       
             <div class="border border-dark" >                
                 <h6>Data: {{email.dataChegadaOuEnvio}}</h6> 
