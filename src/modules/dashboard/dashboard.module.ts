@@ -35,7 +35,6 @@ import { MatSpinnerOverlayComponent } from '@app/mat-spinner-overlay/mat-spinner
         NavigationModule,
         ChartsModule,
         TablesModule,
-        MatProgressSpinnerModule,
     ],
     providers: [...dashboardServices.services, ...dashboardGuards.guards],
     declarations: [
