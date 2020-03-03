@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LoadingComponent } from './loading.component';
+import { MatSpinnerOverlayComponent } from './mat-spinner-overlay.component';
 
-describe('LoadingComponent', () => {
-  let component: LoadingComponent;
-  let fixture: ComponentFixture<LoadingComponent>;
+describe('MatSpinnerOverlayComponent', () => {
+  let component: MatSpinnerOverlayComponent;
+  let fixture: ComponentFixture<MatSpinnerOverlayComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LoadingComponent ]
+      declarations: [ MatSpinnerOverlayComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LoadingComponent);
+    fixture = TestBed.createComponent(MatSpinnerOverlayComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
