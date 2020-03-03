@@ -22,7 +22,6 @@ import * as dashboardGuards from './guards';
 
 /* Services */
 import * as dashboardServices from './services';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSpinnerOverlayComponent } from '@app/mat-spinner-overlay/mat-spinner-overlay.component';
 
 @NgModule({
