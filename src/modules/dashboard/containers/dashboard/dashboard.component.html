@@ -4,6 +4,11 @@
     <sb-dashboard-tables></sb-dashboard-tables>
 </sb-layout-dashboard> -->
 
+<mat-progress-spinner mode="indeterminate" style="margin:0 auto;">  <!-- *ngIf="isWait"> -->
+</mat-progress-spinner>
+
+<!-- <app-mat-spinner-overlay>
+</app-mat-spinner-overlay> -->
 
 <sb-layout-dashboard>
     <sb-dashboard-head title="Dashboard" [hideBreadcrumbs]="false"></sb-dashboard-head>
@@ -12,7 +17,7 @@
 <div class="row">
     <div class="col-xl-2 col-md-6">
         <sb-card-view-details link="/dashboard" background="dia10" >
-            <div class="card-body" (click)="show10dias()">+10 Dias</div>
+            <div class="card-body" (click)="show10dias()">10 Dias</div>
             <div class="card-footer d-flex align-items-center justify-content-between">
                 <div style="font-size: 12px;">{{emailsNaoLidosCount[0].total10}} e-mails não lidos</div>
             </div>
@@ -68,9 +73,11 @@
         <div class="container" *ngFor="let email of displayTela" >
             <ngb-panel>    
                 <ng-template ngbPanelTitle>
-                <span (click)="getHistorico(email.assunto)">{{email.assunto}}</span>  
-                <button type="button" class="btn btn-primary" style="float: right;">Finalizar e-mail</button>
-                    <ng-template ngbPanelContent *ngIf="historico.length > 0">       
+                <!-- <span (click)="getHistorico(email.assunto)">{{email.assunto}}</span>   -->
+                <span (click)="getHistorico(email.assunto)">{{email.assunto}}</span>
+                <button type="button" (click)="finalizarEmail(email.assunto)" class="btn btn-primary" style="float: right; margin-top: 1px; margin-bottom: 1px;">
+                    Finalizar e-mail</button>
+                    <ng-template ngbPanelContent>       
                         <div class="border border-dark" *ngFor="let detalhe of historico">                
                             <h6> <strong>Data: </strong> {{detalhe.dataChegadaOuEnvio}}</h6> 
                             <h6> <strong>Remetente: </strong> {{detalhe.remetente}}</h6> 
@@ -79,7 +86,7 @@
                             <h6 style="text-align: right; padding: 10px;"><a href={{email.webLink}} target="_blank"> RESPONDER </a></h6>                
                         </div>
                     </ng-template>
-                    <ng-template ngbPanelContent *ngIf="historico.length === 0">
+                    <!-- <ng-template ngbPanelContent *ngIf="historico.length === 0">
                         <div class="border border-dark">
                             <h6> <strong>Data: </strong> {{email.dataChegadaOuEnvio}}</h6>
                             <h6> <strong>Remetente: </strong> {{email.remetente}}</h6>
@@ -87,7 +94,7 @@
                             <h6> <strong>Mensagem: </strong> {{email.emailBody}}</h6>
                             <h6 style="text-align: right; padding: 10px;"><a href={{email.webLink}} target="_blank"> RESPONDER </a></h6>
                         </div>                                                
-                    </ng-template>                    
+                    </ng-template>                     -->
                 </ng-template>
             </ngb-panel>        
         </div>
