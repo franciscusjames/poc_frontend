@@ -20,6 +20,11 @@ const routes: Routes = [
             ),
     },
     {
+        path: 'finalizados',
+        loadChildren: () =>
+            import('modules/finalizados/finalizados-routing.module').then(m => m.FinalizadosRoutingModule),
+    },
+    {
         path: 'auth',
         loadChildren: () =>
             import('modules/auth/auth-routing.module').then(m => m.AuthRoutingModule),
