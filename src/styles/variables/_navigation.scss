@@ -6,12 +6,12 @@ $zindex-topnav: 1090 !default;
 
 // -- Sidenav Dark
 $sidenav-dark-bg: $gray-200;
-$sidenav-dark-color: fade-out(#000, 0.5);
 $sidenav-dark-heading-color: fade-out(#000, 0.75);
-$sidenav-dark-link-color: fade-out(#000, 0.5);
+$sidenav-dark-link-color: #000;
 $sidenav-dark-link-active-color: #000;
 $sidenav-dark-icon-color: fade-out(#000, 0.75);
 $sidenav-dark-footer-bg: $gray-400;
+$sidenav-dark-color: #000;
 
 // Color variables for the topnav
 $topnav-dark-toggler-color: fade-out($white, 0.5);
