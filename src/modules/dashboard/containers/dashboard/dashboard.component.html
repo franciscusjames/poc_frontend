@@ -65,42 +65,31 @@
     <!-- Accordion -->
       <!-- <button class="btn btn-sm btn-outline-primary mr-2" (click)="acc.toggle('toggle-1')">Accordion #1</button> -->
     <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
-        <div class="container" *ngFor= "let email of displayTela">
-        <ngb-panel (click)="getHistorico(email.assunto)" title="{{email.assunto}}" >           
-          <ng-template ngbPanelContent>       
-            <div class="border border-dark" >                
-                <h6>Data: {{email.dataChegadaOuEnvio}}</h6> 
-                <h6>Remetente: {{email.remetente}}</h6> 
-                <h6>Assunto: {{email.assunto}}</h6>
-                <h6>Mensagem: {{email.emailBody}}</h6>
-                <h6 style="text-align: right;"><a href={{email.webLink}} >RESPONDER </a></h6>
-            </div>
-            <!-- <table>
-                <thead>
-                    <tr>
-                        <th class="col-lg-1">Data</th>                        
-                        <th class="col-lg-3">Assunto</th>                        
-                        <th class="col-lg-7">Mensagem</th>
-                        <th class="col-lg-1">Responder</th>
-                    </tr>
-                </thead>
-                <tbody *ngIf="historico.length > 0">                
-                    <tr *ngFor="let detalhe of historico">                    
-                        <td>{{email.dataChegadaOuEnvio}} </td>                        
-                        <td>{{email.assunto}} </td>                        
-                        <td>{{email.emailBody}} </td>
-                        <td><a href={{email.webLink}}>Responder</a></td>
-                    </tr>
-                </tbody>
-                <tbody *ngIf="historico.length === 0">
-                    <tr>
-                        <td rowspan="6">Não existem mais emails nesta conversa!</td>
-                    </tr>
-                </tbody>
-            </table>             -->
-            <button type="button" class="btn btn-primary" style="float: right; margin-top: 40px; margin-bottom: 15px;">Finalizar e-mail</button>
-          </ng-template>
-        </ngb-panel>        
+        <div class="container" *ngFor="let email of displayTela" >
+            <ngb-panel>    
+                <ng-template ngbPanelTitle>
+                <span (click)="getHistorico(email.assunto)">{{email.assunto}}</span>  
+                <button type="button" class="btn btn-primary" style="float: right; margin-top: 40px; margin-bottom: 15px;">Finalizar e-mail</button>
+                    <ng-template ngbPanelContent *ngIf="historico.length > 0">       
+                        <div class="border border-dark" *ngFor="let detalhe of historico">                
+                            <h6> <strong>Data: </strong> {{detalhe.dataChegadaOuEnvio}}</h6> 
+                            <h6> <strong>Remetente: </strong> {{detalhe.remetente}}</h6> 
+                            <h6> <strong>Assunto: </strong> {{detalhe.assunto}}</h6>
+                            <h6> <strong>Mensagem: </strong> {{detalhe.emailBody}}</h6>                
+                            <h6 style="text-align: right; padding: 20px;"><a href={{email.webLink}} target="_blank"> RESPONDER </a></h6>                
+                        </div>
+                    </ng-template>
+                    <ng-template ngbPanelContent *ngIf="historico.length === 0">
+                        <div class="border border-dark">
+                            <h6> <strong>Data: </strong> {{email.dataChegadaOuEnvio}}</h6>
+                            <h6> <strong>Remetente: </strong> {{email.remetente}}</h6>
+                            <h6> <strong>Assunto: </strong> {{email.assunto}}</h6>
+                            <h6> <strong>Mensagem: </strong> {{email.emailBody}}</h6>
+                            <h6 style="text-align: right; padding: 20px;"><a href={{email.webLink}} target="_blank"> RESPONDER </a></h6>
+                        </div>                                                
+                    </ng-template>                    
+                </ng-template>
+            </ngb-panel>        
         </div>
     </ngb-accordion>
   <!-- Final Accordion -->
