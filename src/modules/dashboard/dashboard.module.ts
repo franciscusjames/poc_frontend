@@ -22,8 +22,6 @@ import * as dashboardGuards from './guards';
 
 /* Services */
 import * as dashboardServices from './services';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatSpinnerOverlayComponent } from '@app/mat-spinner-overlay/mat-spinner-overlay.component';
 
 @NgModule({
     imports: [
@@ -36,14 +34,9 @@ import { MatSpinnerOverlayComponent } from '@app/mat-spinner-overlay/mat-spinner
         NavigationModule,
         ChartsModule,
         TablesModule,
-        MatProgressSpinnerModule,
     ],
     providers: [...dashboardServices.services, ...dashboardGuards.guards],
-    declarations: [
-        ...dashboardContainers.containers,
-        ...dashboardComponents.components,
-        MatSpinnerOverlayComponent,
-    ],
+    declarations: [...dashboardContainers.containers, ...dashboardComponents.components],
     exports: [...dashboardContainers.containers, ...dashboardComponents.components],
 })
 export class DashboardModule {}

@@ -4,12 +4,6 @@
     <sb-dashboard-tables></sb-dashboard-tables>
 </sb-layout-dashboard> -->
 
-<mat-progress-spinner mode="indeterminate" style="margin:0 auto;">  <!-- *ngIf="isWait"> -->
-</mat-progress-spinner>
-
-<!-- <app-mat-spinner-overlay>
-</app-mat-spinner-overlay> -->
-
 <sb-layout-dashboard>
     <sb-dashboard-head title="Dashboard" [hideBreadcrumbs]="false"></sb-dashboard-head>
 
@@ -77,7 +71,8 @@
                 <span (click)="getHistorico(email.assunto)">{{email.assunto}}</span>
                 <button type="button" (click)="finalizarEmail(email.assunto)" class="btn btn-primary" style="float: right; margin-top: 1px; margin-bottom: 1px;">
                     Finalizar e-mail</button>
-                    <ng-template ngbPanelContent>       
+                    <!-- <div *ngFor="let item of historico"> -->
+                    <ng-template ngbPanelContent *ngIf="historico.length > 0">       
                         <div class="border border-dark" *ngFor="let detalhe of historico">                
                             <h6> <strong>Data: </strong> {{detalhe.dataChegadaOuEnvio}}</h6> 
                             <h6> <strong>Remetente: </strong> {{detalhe.remetente}}</h6> 
@@ -86,7 +81,7 @@
                             <h6 style="text-align: right; padding: 10px;"><a href={{email.webLink}} target="_blank"> RESPONDER </a></h6>                
                         </div>
                     </ng-template>
-                    <!-- <ng-template ngbPanelContent *ngIf="historico.length === 0">
+                    <ng-template ngbPanelContent *ngIf="historico.length === 0">
                         <div class="border border-dark">
                             <h6> <strong>Data: </strong> {{email.dataChegadaOuEnvio}}</h6>
                             <h6> <strong>Remetente: </strong> {{email.remetente}}</h6>
@@ -94,7 +89,8 @@
                             <h6> <strong>Mensagem: </strong> {{email.emailBody}}</h6>
                             <h6 style="text-align: right; padding: 10px;"><a href={{email.webLink}} target="_blank"> RESPONDER </a></h6>
                         </div>                                                
-                    </ng-template>                     -->
+                    </ng-template>
+                    <!-- </div> -->
                 </ng-template>
             </ngb-panel>        
         </div>
