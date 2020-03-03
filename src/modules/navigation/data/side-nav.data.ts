@@ -3,7 +3,7 @@ import { SideNavItems, SideNavSection } from '@modules/navigation/models';
 export const sideNavSections: SideNavSection[] = [
     {
         text: 'CORE',
-        items: ['dashboard'],
+        items: ['dashboard','finish'],
     },
     {
         text: 'INTERFACE',
@@ -20,6 +20,11 @@ export const sideNavItems: SideNavItems = {
         icon: 'tachometer-alt',
         text: 'Dashboard',
         link: '/dashboard',
+    },
+     finish: {
+        icon: 'chart-area',
+        text: 'Finalizados',
+        link: '/finalizados',
     },
     pages: {
         icon: 'book-open',
