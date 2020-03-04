@@ -4,46 +4,67 @@ import {
     Component,
     Input,
     OnInit,
-    QueryList,
-    ViewChildren,
+    // QueryList,
+    // ViewChildren,
 } from '@angular/core';
-import { SBSortableHeaderDirective, SortEvent } from '@modules/tables/directives';
-import { Country } from '@modules/tables/models';
-import { CountryService } from '@modules/tables/services';
-import { Observable } from 'rxjs';
-
+import { FinalizadosService } from '@modules/finalizados/services/finalizados.service';
+// import { SBSortableHeaderDirective, SortEvent } from '@modules/tables/directives';
+// import { Country } from '@modules/tables/models';
+// import { CountryService } from '@modules/tables/services';
+// import { Observable } from 'rxjs';
 @Component({
     selector: 'sb-ng-bootstrap-table',
-    changeDetection: ChangeDetectionStrategy.OnPush,
+    // changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './ng-bootstrap-table.component.html',
     styleUrls: ['ng-bootstrap-table.component.scss'],
 })
 export class NgBootstrapTableComponent implements OnInit {
-    @Input() pageSize = 4;
+    @Input() pageSize = 10;
 
-    countries$!: Observable<Country[]>;
-    total$!: Observable<number>;
-    sortedColumn!: string;
-    sortedDirection!: string;
+    // countries$!: Observable<Country[]>;
+    // total$!: Observable<number>;
+    // sortedColumn!: string;
+    // sortedDirection!: string;
 
-    @ViewChildren(SBSortableHeaderDirective) headers!: QueryList<SBSortableHeaderDirective>;
+    public emailsFinalizados: any;
+    public totalFinalizados = 0;
 
-    constructor(
-        public countryService: CountryService,
-        private changeDetectorRef: ChangeDetectorRef
-    ) {}
+    // @ViewChildren(SBSortableHeaderDirective) headers!: QueryList<SBSortableHeaderDirective>;
 
-    ngOnInit() {
-        this.countryService.pageSize = this.pageSize;
-        this.countries$ = this.countryService.countries$;
-        this.total$ = this.countryService.total$;
+    constructor(public service: FinalizadosService) {}
+
+    async ngOnInit() {
+        await this.getFinalizados();
+        // this.countries$ = this.countryService.countries$;
+        // this.total$ = this.countryService.total$;
     }
 
-    onSort({ column, direction }: SortEvent) {
-        this.sortedColumn = column;
-        this.sortedDirection = direction;
-        this.countryService.sortColumn = column;
-        this.countryService.sortDirection = direction;
-        this.changeDetectorRef.detectChanges();
+    // onSort({ column, direction }: SortEvent) {
+    //     this.sortedColumn = column;
+    //     this.sortedDirection = direction;
+    //     // this.countryService.sortColumn = column;
+    //     // this.countryService.sortDirection = direction;
+    //     this.changeDetectorRef.detectChanges();
+    // }
+
+    async getFinalizados() {
+        try {
+            this.emailsFinalizados = await this.service.getEmailsFinalizados();
+            this.totalFinalizados = this.emailsFinalizados.length;
+            console.log('tableFinalizados: ', this.emailsFinalizados);
+            console.log('Finalizados: ', this.totalFinalizados);
+        } catch (err) {
+            console.log('Error: ', err);
+        }
+        await this.formatData(this.emailsFinalizados);
+    }
+
+    async formatData(param: any) {
+        param.map((email: { dataChegadaOuEnvio: { toString: () => string } }) => {
+            email.dataChegadaOuEnvio = email.dataChegadaOuEnvio
+                .toString()
+                .replace('T', '  ')
+                .replace('.000Z', '');
+        });
     }
 }

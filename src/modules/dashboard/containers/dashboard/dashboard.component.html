@@ -11,7 +11,7 @@
 <div class="row">
     <div class="col-xl-2 col-md-6">
         <sb-card-view-details link="/dashboard" background="dia10" >
-            <div class="card-body" (click)="show10dias()">10 Dias</div>
+            <div class="card-body" (click)="show10dias()">+10 Dias</div>
             <div class="card-footer d-flex align-items-center justify-content-between">
                 <div style="font-size: 12px;">{{emailsNaoLidosCount[0].total10}} e-mails não lidos</div>
             </div>
@@ -19,7 +19,7 @@
     </div>
     <div class="col-xl-2 col-md-6">
         <sb-card-view-details link="/dashboard" background="dia07">
-            <div class="card-body" (click)="show7dias()">7 Dias</div>
+            <div class="card-body" (click)="show7dias()">+7 Dias</div>
             <div class="card-footer d-flex align-items-center justify-content-between">
                 <div style="font-size: 12px;">{{emailsNaoLidosCount[0].total7}} e-mails não lidos</div>
             </div>
@@ -27,7 +27,7 @@
     </div>
     <div class="col-xl-2 col-md-6">
         <sb-card-view-details link="/dashboard" background="dia05">
-            <div class="card-body" (click)="show5dias()">5 Dias</div>
+            <div class="card-body" (click)="show5dias()">+5 Dias</div>
             <div class="card-footer d-flex align-items-center justify-content-between">
                 <div style="font-size: 12px;">{{emailsNaoLidosCount[0].total5}} e-mails não lidos</div>
             </div>
@@ -35,7 +35,7 @@
     </div>
     <div class="col-xl-2 col-md-6">
         <sb-card-view-details link="/dashboard" background="dia03">
-            <div class="card-body" (click)="show3dias()">3 Dias</div>
+            <div class="card-body" (click)="show3dias()">+3 Dias</div>
             <div class="card-footer d-flex align-items-center justify-content-between">
                 <div style="font-size: 12px;">{{emailsNaoLidosCount[0].total3}} e-mails não lidos</div>
             </div>
@@ -43,7 +43,7 @@
     </div>
     <div class="col-xl-2 col-md-6">
         <sb-card-view-details link="/dashboard" background="dia02">
-            <div class="card-body" (click)="show2dias()">2 Dias</div>
+            <div class="card-body" (click)="show2dias()">+2 Dias</div>
             <div class="card-footer d-flex align-items-center justify-content-between">
                 <div style="font-size: 12px;">{{emailsNaoLidosCount[0].total2}} e-mails não lidos</div>
             </div>
@@ -51,7 +51,7 @@
     </div>
     <div class="col-xl-2 col-md-6">
         <sb-card-view-details link="/dashboard" background="dia01">
-            <div class="card-body" (click)="show1dia()">24Horas</div>
+            <div class="card-body" (click)="show1dia()">+24Horas</div>
             <div class="card-footer d-flex align-items-center justify-content-between">
                 <div style="font-size: 12px;">{{emailsNaoLidosCount[0].total1}} e-mails não lidos</div>
             </div>
@@ -70,15 +70,16 @@
                 <!-- <span (click)="getHistorico(email.assunto)">{{email.assunto}}</span>   -->
                 <strong><span (click)="getHistorico(email.assunto)">{{email.assunto}}</span></strong>
                 <button type="button" (click)="finalizarEmail(email.assunto)" class="btn btn-primary" style="float: right; margin-top: 1px; margin-bottom: 1px;">
-                    Finalizar e-mail</button>
-                    <!-- <div *ngFor="let item of historico"> -->
+                    Finalizar e-mail</button>                    
                     <ng-template ngbPanelContent *ngIf="historico.length > 0">       
-                        <div class="border border-dark" *ngFor="let detalhe of historico">                
+                        <div class="border border-dark" *ngFor="let detalhe of historico">  
+                            <!-- <div *ngIf="email.assunto == detalhe.assunto"> -->
                             <h6> <strong>Data: </strong> {{detalhe.dataChegadaOuEnvio}}</h6> 
                             <h6> <strong>Remetente: </strong> {{detalhe.remetente}}</h6> 
                             <h6> <strong>Assunto: </strong> {{detalhe.assunto}}</h6>
                             <h6> <strong>Mensagem: </strong> {{detalhe.emailBody}}</h6>                
-                            <h6 style="text-align: right; margin-top: 10px;"><a href={{email.webLink}} target="_blank"> RESPONDER </a></h6>                
+                            <h6 style="text-align: right; margin-top: 10px;"><a (click)="setLido(detalhe.id)" href={{email.webLink}} target="_blank"> RESPONDER </a></h6>
+                            <!-- </div> -->
                         </div>
                     </ng-template>
                     <ng-template ngbPanelContent *ngIf="historico.length === 0">
@@ -87,10 +88,9 @@
                             <h6> <strong>Remetente: </strong> {{email.remetente}}</h6>
                             <h6> <strong>Assunto: </strong> {{email.assunto}}</h6>
                             <h6> <strong>Mensagem: </strong> {{email.emailBody}}</h6>
-                            <h6 style="text-align: right; margin-top: 10px;"><a href={{email.webLink}} target="_blank"> RESPONDER </a></h6>
+                            <h6 style="text-align: right; margin-top: 10px;"><a (click)="setLido(email.id)" href={{email.webLink}} target="_blank"> RESPONDER </a></h6>
                         </div>                                                
-                    </ng-template>
-                    <!-- </div> -->
+                    </ng-template>                    
                 </ng-template>
             </ngb-panel>        
         </div>

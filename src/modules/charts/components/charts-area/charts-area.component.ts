@@ -25,21 +25,7 @@ export class ChartsAreaComponent implements OnInit, AfterViewInit {
         this.chart = new Chart(this.myAreaChart.nativeElement, {
             type: 'line',
             data: {
-                labels: [
-                    'Mar 1',
-                    'Mar 2',
-                    'Mar 3',
-                    'Mar 4',
-                    'Mar 5',
-                    'Mar 6',
-                    'Mar 7',
-                    'Mar 8',
-                    'Mar 9',
-                    'Mar 10',
-                    'Mar 11',
-                    'Mar 12',
-                    'Mar 13',
-                ],
+                labels: ['Fev 15', 'Fev 21', 'Fev 25', 'Fev 27', 'Fev 28'],
                 datasets: [
                     {
                         label: 'Sessions',
@@ -53,21 +39,7 @@ export class ChartsAreaComponent implements OnInit, AfterViewInit {
                         pointHoverBackgroundColor: 'rgba(2,117,216,1)',
                         pointHitRadius: 50,
                         pointBorderWidth: 2,
-                        data: [
-                            10000,
-                            30162,
-                            26263,
-                            18394,
-                            18287,
-                            28682,
-                            31274,
-                            33259,
-                            25849,
-                            24159,
-                            32651,
-                            31984,
-                            38451,
-                        ],
+                        data: [0, 0, 2, 1, 0],
                     },
                 ],
             },
@@ -90,7 +62,7 @@ export class ChartsAreaComponent implements OnInit, AfterViewInit {
                         {
                             ticks: {
                                 min: 0,
-                                max: 40000,
+                                max: 4,
                                 maxTicksLimit: 5,
                             },
                             gridLines: {

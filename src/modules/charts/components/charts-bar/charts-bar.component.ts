@@ -31,7 +31,7 @@ export class ChartsBarComponent implements OnInit, AfterViewInit {
                         label: 'Revenue',
                         backgroundColor: 'rgba(2,117,216,1)',
                         borderColor: 'rgba(2,117,216,1)',
-                        data: [4215, 5312, 6251, 7841, 9821, 14984],
+                        data: [0, 3, 1, 0, 0, 0],
                     },
                 ],
             },
@@ -54,7 +54,7 @@ export class ChartsBarComponent implements OnInit, AfterViewInit {
                         {
                             ticks: {
                                 min: 0,
-                                max: 15000,
+                                max: 4,
                                 maxTicksLimit: 5,
                             },
                             gridLines: {

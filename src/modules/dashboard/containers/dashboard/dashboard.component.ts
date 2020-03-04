@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    ComponentFactoryResolver,
+    OnInit,
+} from '@angular/core';
 import { Email } from '@modules/dashboard/models/Email';
 
 import { DashboardService } from '../../services/dashboard.service';
@@ -13,13 +18,26 @@ export class DashboardComponent implements OnInit {
     public emailsNaoLidosCount = [];
     public emailsFiltrados = [];
     public displayTela: any;
-    public historico = [];
+    public historico: any;
+
+    public h1: any;
+    public h2: any;
+    public h3: any;
+    public h5: any;
+    public h7: any;
+    public h10: any;
 
     constructor(private service: DashboardService) {}
 
     async ngOnInit() {
         await this.fillEmailsFiltrados();
         await this.fillEmailsCount();
+        await this.show10dias();
+        await this.show7dias();
+        await this.show5dias();
+        await this.show3dias();
+        await this.show2dias();
+        await this.show1dia();
     }
 
     async fillEmailsFiltrados() {
@@ -32,12 +50,15 @@ export class DashboardComponent implements OnInit {
     }
 
     async finalizarEmail(assunto: string) {
-        try {
-            const finalizarEmail = await this.service.putFinalizarEmail(assunto);
-            alert(`Email "${assunto}" finalizado!`);
-            await this.ngOnInit();
-        } catch (err) {
-            console.log('Error: ', err);
+        if (confirm(`Deseja finalizar email "${assunto}"?`) === true) {
+            try {
+                const finalizarEmail = await this.service.putFinalizarEmail(assunto);
+                alert(`Email "${assunto}" finalizado!`);
+                await this.ngOnInit();
+            } catch (err) {
+                console.log('Error: ', err);
+            }
+            location.reload(true);
         }
     }
 
@@ -53,36 +74,42 @@ export class DashboardComponent implements OnInit {
     async show10dias() {
         console.log('10 dias OK');
         this.displayTela = await this.service.getEmailsNaoLidos10dias();
+        await this.formatData(this.displayTela);
         await this.getHistorico(this.displayTela);
     }
 
     async show7dias() {
         console.log('7 dias OK');
         this.displayTela = await this.service.getEmailsNaoLidos7dias();
+        await this.formatData(this.displayTela);
         await this.getHistorico(this.displayTela);
     }
 
     async show5dias() {
         console.log('5 dias OK');
         this.displayTela = await this.service.getEmailsNaoLidos5dias();
+        await this.formatData(this.displayTela);
         await this.getHistorico(this.displayTela);
     }
 
     async show3dias() {
         console.log('3 dias OK');
         this.displayTela = await this.service.getEmailsNaoLidos3dias();
+        await this.formatData(this.displayTela);
         await this.getHistorico(this.displayTela);
     }
 
     async show2dias() {
         console.log('2 dias OK');
         this.displayTela = await this.service.getEmailsNaoLidos2dias();
+        await this.formatData(this.displayTela);
         await this.getHistorico(this.displayTela);
     }
 
     async show1dia() {
         console.log('24hs OK');
         this.displayTela = await this.service.getEmailsNaoLidos1dia();
+        await this.formatData(this.displayTela);
         await this.getHistorico(this.displayTela);
     }
 
@@ -101,5 +128,17 @@ export class DashboardComponent implements OnInit {
                 .replace('T', '  ')
                 .replace('.000Z', '');
         });
+    }
+
+    async setLido(id: number) {
+        alert(`setLido, id: ${id}`);
+        // if (confirm(`Responder este email?`) === true) {
+        //     try {
+        //         const setLido = await this.service.putSetEmailLido(id);
+        //     } catch (err) {
+        //         console.log('Erro: ', err);
+        //     }
+        //     location.reload(true);
+        // }
     }
 }
