@@ -10,7 +10,7 @@ export class DashboardService {
 
     constructor(private http: HttpClient) {}
 
-    private createHeader = () => this.headers.set('Access-Control-Allow-Origin', '*');
+    private createHeader = async () => this.headers.set('Access-Control-Allow-Origin', '*');
 
     public getEmailsFiltrados = async (): Promise<any> => {
         return this.http.get(`${environment.API_URL_BACK}/emailsFiltrados`).toPromise();
@@ -25,7 +25,7 @@ export class DashboardService {
     };
 
     public postHistoricoEmail = async (param: string): Promise<any> => {
-        // this.headers.set('Access-Control-Allow-Origin', '*');
+        // await this.createHeader();
         return this.http.post(`${environment.API_URL_BACK}/historicoEmail`, { param }).toPromise();
     };
 
@@ -61,7 +61,7 @@ export class DashboardService {
         return this.http.get(`${environment.API_URL_BACK}/emailsNaoLidosCount`).toPromise();
     };
 
-    public putSetEmailLido = async (id: number): Promise<any> => {
-        return this.http.put(`${environment.API_URL_BACK}/setEmailLido`, { id }).toPromise();
+    public putSetEmailLido = async (param: string): Promise<any> => {
+        return this.http.put(`${environment.API_URL_BACK}/setEmailLido`, { param }).toPromise();
     };
 }

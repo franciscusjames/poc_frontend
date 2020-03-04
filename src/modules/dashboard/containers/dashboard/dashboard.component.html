@@ -60,10 +60,11 @@
 </div>
 <!-- Final Cards -->
 
+<div> <h5> {{viewTag}} </h5> </div>
 
     <!-- Accordion -->
       <!-- <button class="btn btn-sm btn-outline-primary mr-2" (click)="acc.toggle('toggle-1')">Accordion #1</button> -->
-    <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+    <ngb-accordion  [closeOthers]="true" #acc="ngbAccordion" activeIds="ngb-panel-0">
         <div class="container" *ngFor="let email of displayTela" >
             <ngb-panel>    
                 <ng-template ngbPanelTitle>
@@ -71,25 +72,23 @@
                 <strong><span (click)="getHistorico(email.assunto)">{{email.assunto}}</span></strong>
                 <button type="button" (click)="finalizarEmail(email.assunto)" class="btn btn-primary" style="float: right; margin-top: 1px; margin-bottom: 1px;">
                     Finalizar e-mail</button>                    
-                    <ng-template ngbPanelContent *ngIf="historico.length > 0">       
-                        <div class="border border-dark" *ngFor="let detalhe of historico">  
-                            <!-- <div *ngIf="email.assunto == detalhe.assunto"> -->
+                    <ng-template ngbPanelContent *ngIf="historico.length > 0">
+                        <div class="border border-dark" *ngFor="let detalhe of historico" >
                             <h6> <strong>Data: </strong> {{detalhe.dataChegadaOuEnvio}}</h6> 
                             <h6> <strong>Remetente: </strong> {{detalhe.remetente}}</h6> 
                             <h6> <strong>Assunto: </strong> {{detalhe.assunto}}</h6>
-                            <h6> <strong>Mensagem: </strong> {{detalhe.emailBody}}</h6>                
-                            <h6 style="text-align: right; margin-top: 10px;"><a (click)="setLido(detalhe.id)" href={{email.webLink}} target="_blank"> RESPONDER </a></h6>
-                            <!-- </div> -->
+                            <h6> <strong>Mensagem: </strong> {{detalhe.emailBody}}</h6>                                            
                         </div>
+                        <h6 style="text-align: right; margin-top: 10px;"><a (click)="setLido(email.assunto)" href={{email.webLink}} target="_blank"> RESPONDER </a></h6>
                     </ng-template>
                     <ng-template ngbPanelContent *ngIf="historico.length === 0">
                         <div class="border border-dark">
                             <h6> <strong>Data: </strong> {{email.dataChegadaOuEnvio}}</h6>
                             <h6> <strong>Remetente: </strong> {{email.remetente}}</h6>
                             <h6> <strong>Assunto: </strong> {{email.assunto}}</h6>
-                            <h6> <strong>Mensagem: </strong> {{email.emailBody}}</h6>
-                            <h6 style="text-align: right; margin-top: 10px;"><a (click)="setLido(email.id)" href={{email.webLink}} target="_blank"> RESPONDER </a></h6>
-                        </div>                                                
+                            <h6> <strong>Mensagem: </strong> {{email.emailBody}}</h6>                            
+                        </div>
+                        <h6 style="text-align: right; margin-top: 10px;"><a (click)="setLido(email.assunto)" href={{email.webLink}} target="_blank">RESPONDER </a></h6>
                     </ng-template>                    
                 </ng-template>
             </ngb-panel>        

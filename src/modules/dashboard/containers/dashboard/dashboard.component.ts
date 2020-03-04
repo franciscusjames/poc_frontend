@@ -20,24 +20,19 @@ export class DashboardComponent implements OnInit {
     public displayTela: any;
     public historico: any;
 
-    public h1: any;
-    public h2: any;
-    public h3: any;
-    public h5: any;
-    public h7: any;
-    public h10: any;
+    public viewTag = '';
 
     constructor(private service: DashboardService) {}
 
     async ngOnInit() {
         await this.fillEmailsFiltrados();
         await this.fillEmailsCount();
-        await this.show10dias();
-        await this.show7dias();
-        await this.show5dias();
-        await this.show3dias();
-        await this.show2dias();
-        await this.show1dia();
+        // await this.show10dias();
+        // await this.show7dias();
+        // await this.show5dias();
+        // await this.show3dias();
+        // await this.show2dias();
+        // await this.show1dia();
     }
 
     async fillEmailsFiltrados() {
@@ -59,6 +54,7 @@ export class DashboardComponent implements OnInit {
                 console.log('Error: ', err);
             }
             location.reload(true);
+            // await this.ngOnInit();
         }
     }
 
@@ -74,6 +70,7 @@ export class DashboardComponent implements OnInit {
     async show10dias() {
         console.log('10 dias OK');
         this.displayTela = await this.service.getEmailsNaoLidos10dias();
+        this.viewTag = 'Emails atrasados a mais de 10 Dias:';
         await this.formatData(this.displayTela);
         await this.getHistorico(this.displayTela);
     }
@@ -81,6 +78,7 @@ export class DashboardComponent implements OnInit {
     async show7dias() {
         console.log('7 dias OK');
         this.displayTela = await this.service.getEmailsNaoLidos7dias();
+        this.viewTag = 'Emails atrasados a mais de 7 Dias:';
         await this.formatData(this.displayTela);
         await this.getHistorico(this.displayTela);
     }
@@ -88,6 +86,7 @@ export class DashboardComponent implements OnInit {
     async show5dias() {
         console.log('5 dias OK');
         this.displayTela = await this.service.getEmailsNaoLidos5dias();
+        this.viewTag = 'Emails atrasados a mais de 5 Dias:';
         await this.formatData(this.displayTela);
         await this.getHistorico(this.displayTela);
     }
@@ -95,6 +94,7 @@ export class DashboardComponent implements OnInit {
     async show3dias() {
         console.log('3 dias OK');
         this.displayTela = await this.service.getEmailsNaoLidos3dias();
+        this.viewTag = 'Emails atrasados a mais de 3 Dias:';
         await this.formatData(this.displayTela);
         await this.getHistorico(this.displayTela);
     }
@@ -102,6 +102,7 @@ export class DashboardComponent implements OnInit {
     async show2dias() {
         console.log('2 dias OK');
         this.displayTela = await this.service.getEmailsNaoLidos2dias();
+        this.viewTag = 'Emails atrasados a mais de 2 Dias:';
         await this.formatData(this.displayTela);
         await this.getHistorico(this.displayTela);
     }
@@ -109,6 +110,7 @@ export class DashboardComponent implements OnInit {
     async show1dia() {
         console.log('24hs OK');
         this.displayTela = await this.service.getEmailsNaoLidos1dia();
+        this.viewTag = 'Emails atrasados a mais de 24 horas:';
         await this.formatData(this.displayTela);
         await this.getHistorico(this.displayTela);
     }
@@ -130,15 +132,15 @@ export class DashboardComponent implements OnInit {
         });
     }
 
-    async setLido(id: number) {
-        alert(`setLido, id: ${id}`);
-        // if (confirm(`Responder este email?`) === true) {
-        //     try {
-        //         const setLido = await this.service.putSetEmailLido(id);
-        //     } catch (err) {
-        //         console.log('Erro: ', err);
-        //     }
-        //     location.reload(true);
-        // }
+    async setLido(assunto: string) {
+        // alert(`setLido, assunto: ${assunto}`);
+        if (confirm(`Responder este email?`) === true) {
+            try {
+                const setLido = await this.service.putSetEmailLido(assunto);
+            } catch (err) {
+                console.log('Erro: ', err);
+            }
+            location.reload(true);
+        }
     }
 }
