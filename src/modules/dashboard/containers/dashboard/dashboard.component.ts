@@ -20,6 +20,13 @@ export class DashboardComponent implements OnInit {
     public displayTela: any;
     public historico: any;
 
+    public naoLidos10dias: any;
+    public naoLidos7dias: any;
+    public naoLidos5dias: any;
+    public naoLidos3dias: any;
+    public naoLidos2dias: any;
+    public naoLidos1dia: any;
+
     public viewTag = '';
 
     constructor(private service: DashboardService) {}
@@ -27,12 +34,7 @@ export class DashboardComponent implements OnInit {
     async ngOnInit() {
         await this.fillEmailsFiltrados();
         await this.fillEmailsCount();
-        // await this.show10dias();
-        // await this.show7dias();
-        // await this.show5dias();
-        // await this.show3dias();
-        // await this.show2dias();
-        // await this.show1dia();
+        await this.getAllEmailsNaoLidos();
     }
 
     async fillEmailsFiltrados() {
@@ -40,7 +42,7 @@ export class DashboardComponent implements OnInit {
             this.emailsFiltrados = await this.service.getEmailsFiltrados();
             console.log('emailsFiltrados: ', this.emailsFiltrados);
         } catch (err) {
-            console.log('Error: ', err);
+            console.log('Erro fillEmailsFiltrados: ', err);
         }
     }
 
@@ -51,7 +53,7 @@ export class DashboardComponent implements OnInit {
                 alert(`Email "${assunto}" finalizado!`);
                 await this.ngOnInit();
             } catch (err) {
-                console.log('Error: ', err);
+                console.log('Erro finalizarEmail: ', err);
             }
             location.reload(true);
             // await this.ngOnInit();
@@ -63,53 +65,66 @@ export class DashboardComponent implements OnInit {
             this.emailsNaoLidosCount = await this.service.getEmailsNaoLidosCount();
             console.log('emailsNaoLidosCount: ', this.emailsNaoLidosCount);
         } catch (err) {
-            console.log('Error: ', err);
+            console.log('Erro fillEmailsCount: ', err);
+        }
+    }
+
+    async getAllEmailsNaoLidos() {
+        try {
+            this.naoLidos10dias = await this.service.getEmailsNaoLidos10dias();
+            this.naoLidos7dias = await this.service.getEmailsNaoLidos7dias();
+            this.naoLidos5dias = await this.service.getEmailsNaoLidos5dias();
+            this.naoLidos3dias = await this.service.getEmailsNaoLidos3dias();
+            this.naoLidos2dias = await this.service.getEmailsNaoLidos2dias();
+            this.naoLidos1dia = await this.service.getEmailsNaoLidos1dia();
+        } catch (err) {
+            console.log('Erro getAllEmailsNaoLidos: ', err);
         }
     }
 
     async show10dias() {
-        console.log('10 dias OK');
-        this.displayTela = await this.service.getEmailsNaoLidos10dias();
+        // console.log('10 dias OK');
+        this.displayTela = this.naoLidos10dias;
         this.viewTag = 'Emails atrasados a mais de 10 Dias:';
         await this.formatData(this.displayTela);
         await this.getHistorico(this.displayTela);
     }
 
     async show7dias() {
-        console.log('7 dias OK');
-        this.displayTela = await this.service.getEmailsNaoLidos7dias();
+        // console.log('7 dias OK');
+        this.displayTela = this.naoLidos7dias;
         this.viewTag = 'Emails atrasados a mais de 7 Dias:';
         await this.formatData(this.displayTela);
         await this.getHistorico(this.displayTela);
     }
 
     async show5dias() {
-        console.log('5 dias OK');
-        this.displayTela = await this.service.getEmailsNaoLidos5dias();
+        // console.log('5 dias OK');
+        this.displayTela = this.naoLidos5dias;
         this.viewTag = 'Emails atrasados a mais de 5 Dias:';
         await this.formatData(this.displayTela);
         await this.getHistorico(this.displayTela);
     }
 
     async show3dias() {
-        console.log('3 dias OK');
-        this.displayTela = await this.service.getEmailsNaoLidos3dias();
+        // console.log('3 dias OK');
+        this.displayTela = this.naoLidos3dias;
         this.viewTag = 'Emails atrasados a mais de 3 Dias:';
         await this.formatData(this.displayTela);
         await this.getHistorico(this.displayTela);
     }
 
     async show2dias() {
-        console.log('2 dias OK');
-        this.displayTela = await this.service.getEmailsNaoLidos2dias();
+        // console.log('2 dias OK');
+        this.displayTela = this.naoLidos2dias;
         this.viewTag = 'Emails atrasados a mais de 2 Dias:';
         await this.formatData(this.displayTela);
         await this.getHistorico(this.displayTela);
     }
 
     async show1dia() {
-        console.log('24hs OK');
-        this.displayTela = await this.service.getEmailsNaoLidos1dia();
+        // console.log('24hs OK');
+        this.displayTela = this.naoLidos1dia;
         this.viewTag = 'Emails atrasados a mais de 24 horas:';
         await this.formatData(this.displayTela);
         await this.getHistorico(this.displayTela);
@@ -138,7 +153,7 @@ export class DashboardComponent implements OnInit {
             try {
                 const setLido = await this.service.putSetEmailLido(assunto);
             } catch (err) {
-                console.log('Erro: ', err);
+                console.log('Erro setLido: ', err);
             }
             location.reload(true);
         }
