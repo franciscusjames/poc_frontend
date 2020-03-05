@@ -25,8 +25,10 @@ export class DashboardService {
     };
 
     public postHistoricoEmail = async (param: string): Promise<any> => {
-        // await this.createHeader();
-        return this.http.post(`${environment.API_URL_BACK}/historicoEmail`, { param }).toPromise();
+        await this.createHeader();
+        return await this.http
+            .post(`${environment.API_URL_BACK}/historicoEmail`, { param })
+            .toPromise();
     };
 
     public getEmailsNaoLidos1dia = async (): Promise<any> => {

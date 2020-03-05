@@ -67,9 +67,8 @@
     <ngb-accordion  [closeOthers]="true" #acc="ngbAccordion" activeIds="ngb-panel-0">
         <div class="container" *ngFor="let email of displayTela" >
             <ngb-panel>    
-                <ng-template ngbPanelTitle>
-                <!-- <span (click)="getHistorico(email.assunto)">{{email.assunto}}</span>   -->
-                <strong><span (click)="getHistorico(email.assunto)">{{email.assunto}}</span></strong>
+                <ng-template ngbPanelTitle>                
+                <strong (click)="getHistorico(email.assunto)">{{email.assunto}}</strong>
                 <button type="button" (click)="finalizarEmail(email.assunto)" class="btn btn-primary" style="float: right; margin-top: 1px; margin-bottom: 1px;">
                     Finalizar e-mail</button>                    
                     <ng-template ngbPanelContent *ngIf="historico.length > 0">

@@ -52,7 +52,7 @@ export class NgBootstrapTableComponent implements OnInit {
             this.emailsFinalizados = await this.service.getEmailsFinalizados();
             this.totalFinalizados = this.emailsFinalizados.length;
             console.log('tableFinalizados: ', this.emailsFinalizados);
-            console.log('Finalizados: ', this.totalFinalizados);
+            // console.log('Finalizados: ', this.totalFinalizados);
         } catch (err) {
             console.log('Error: ', err);
         }
