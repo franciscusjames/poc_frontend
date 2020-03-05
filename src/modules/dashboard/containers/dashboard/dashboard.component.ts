@@ -94,14 +94,16 @@ export class DashboardComponent implements OnInit {
 
     async getNaoLidos() {
         try {
+            this.loader.show()
             this.naoLidos10dias = await this.service.getEmailsNaoLidos10dias();
             this.naoLidos7dias = await this.service.getEmailsNaoLidos7dias();
             this.naoLidos5dias = await this.service.getEmailsNaoLidos5dias();
             this.naoLidos3dias = await this.service.getEmailsNaoLidos3dias();
             this.naoLidos2dias = await this.service.getEmailsNaoLidos2dias();
             this.naoLidos1dia = await this.service.getEmailsNaoLidos1dia();
+            this.loader.hide()
         } catch (err) {
-            console.log('Erro getNaoLidos: ', err);
+            console.log('Erro getAllEmailsNaoLidos: ', err);
         }
     }
 
