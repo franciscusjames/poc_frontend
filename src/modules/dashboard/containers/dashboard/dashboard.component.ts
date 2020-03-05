@@ -7,6 +7,10 @@ import {
 import { Email } from '@modules/dashboard/models/Email';
 
 import { DashboardService } from '../../services/dashboard.service';
+import { ThemePalette } from '@angular/material/core';
+import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
+import {LoaderService} from '../../../../app/loader/loader.service'
+
 
 @Component({
     selector: 'sb-dashboard',
@@ -29,18 +33,23 @@ export class DashboardComponent implements OnInit {
 
     public viewTag = '';
 
-    constructor(private service: DashboardService) {}
+    constructor(private service: DashboardService, private loader: LoaderService) {}
 
     async ngOnInit() {
+        // this.loader.show();
         await this.fillEmailsFiltrados();
         await this.fillEmailsCount();
         await this.getAllEmailsNaoLidos();
+        // this.loader.hide();
     }
 
     async fillEmailsFiltrados() {
         try {
+            // this.loader.show();
             this.emailsFiltrados = await this.service.getEmailsFiltrados();
             console.log('emailsFiltrados: ', this.emailsFiltrados);
+            // this.loader.hide();
+
         } catch (err) {
             console.log('Erro fillEmailsFiltrados: ', err);
         }
@@ -104,6 +113,7 @@ export class DashboardComponent implements OnInit {
         this.viewTag = 'Emails atrasados a mais de 5 Dias:';
         await this.formatData(this.displayTela);
         await this.getHistorico(this.displayTela);
+
     }
 
     async show3dias() {
@@ -158,4 +168,7 @@ export class DashboardComponent implements OnInit {
             location.reload(true);
         }
     }
+
+    
+
 }

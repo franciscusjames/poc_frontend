@@ -4,12 +4,14 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { MatDialogModule } from '@angular/material/dialog';
 
 /* Modules */
 import { AppCommonModule } from '@common/app-common.module';
 import { NavigationModule } from '@modules/navigation/navigation.module';
 import { ChartsModule } from '@modules/charts/charts.module';
 import { TablesModule } from '@modules/tables/tables.module';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 /* Components */
 import * as dashboardComponents from './components';
@@ -34,6 +36,8 @@ import * as dashboardServices from './services';
         NavigationModule,
         ChartsModule,
         TablesModule,
+        MatProgressSpinnerModule,
+        MatDialogModule
     ],
     providers: [...dashboardServices.services, ...dashboardGuards.guards],
     declarations: [...dashboardContainers.containers, ...dashboardComponents.components],

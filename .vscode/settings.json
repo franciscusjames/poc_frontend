@@ -3,7 +3,7 @@
         "editor.defaultFormatter": "vscode.typescript-language-features"
     },
     "editor.codeActionsOnSave": {
-        "source.fixAll.tslint": true,
+        "source.fixAll.tslint": false,
         "source.organizeImports": false
     },
     "editor.formatOnSave": false,
@@ -28,8 +28,8 @@
             "url": "http://json.schemastore.org/tslint"
         }
     ],
-    "puglint.enable": true,
-    "puglint.run": "onSave",
+    "puglint.enable": false,
+    "puglint.run": "enable",
     "scss.lint.duplicateProperties": "error",
     "typescript.format.enable": true
 }
