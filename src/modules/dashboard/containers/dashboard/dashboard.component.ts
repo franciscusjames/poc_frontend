@@ -8,6 +8,10 @@ import { async } from '@angular/core/testing';
 import { Email } from '@modules/dashboard/models/Email';
 
 import { DashboardService } from '../../services/dashboard.service';
+import { ThemePalette } from '@angular/material/core';
+import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
+import {LoaderService} from '../../../../app/loader/loader.service'
+
 
 @Component({
     selector: 'sb-dashboard',
@@ -38,7 +42,7 @@ export class DashboardComponent implements OnInit {
 
     public viewTag = '';
 
-    constructor(private service: DashboardService) {}
+    constructor(private service: DashboardService, private loader: LoaderService) {}
 
     async ngOnInit() {
         await this.fillEmailsCount();
@@ -48,6 +52,7 @@ export class DashboardComponent implements OnInit {
 
     async fillEmailsFiltrados() {
         try {
+            // this.loader.show();
             this.emailsFiltrados = await this.service.getEmailsFiltrados();
             // console.log('emailsFiltrados: ', this.emailsFiltrados);
         } catch (err) {
@@ -195,4 +200,6 @@ export class DashboardComponent implements OnInit {
             location.reload(true);
         }
     }
+
+
 }

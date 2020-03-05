@@ -15,7 +15,7 @@ export class FinalizadosComponent implements OnInit {
     constructor(private service: FinalizadosService) {}
 
     async ngOnInit() {
-        // await this.getFinalizados();
+        await this.getFinalizados();
     }
 
     async getFinalizados() {
