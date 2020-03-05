@@ -91,7 +91,7 @@
                 "grouped-imports": true
             }
         ],
-        "prettier": true,
+        "prettier": false,
         "quotemark": [
             true,
             "single"
