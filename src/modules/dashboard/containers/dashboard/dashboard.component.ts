@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { async } from '@angular/core/testing';
 
 import { LoaderService } from '../../../../app/loader/loader.service';
 import { DashboardService } from '../../services/dashboard.service';
@@ -24,7 +25,15 @@ export class DashboardComponent implements OnInit {
     public naoLidos2dias: any;
     public naoLidos1dia: any;
 
+    public hist10: any;
+    public hist7: any;
+    public hist5: any;
+    public hist3: any;
+    public hist2: any;
+    public hist1: any;
+
     public viewTag = '';
+    public currentView = 0;
 
 
     constructor(private service: DashboardService, private loader: LoaderService) {}
@@ -58,6 +67,7 @@ export class DashboardComponent implements OnInit {
     async getAll() {
         try {
             await this.getNaoLidos();
+            // await this.getAllHistoricos();
         } catch (err) {
             console.log('Erro getAllEmailsNaoLidos: ', err);
         }
@@ -76,12 +86,27 @@ export class DashboardComponent implements OnInit {
         }
     }
 
+    async getAllHistoricos() {
+        try {
+            await this.getHistorico(10);
+            await this.getHistorico(7);
+            await this.getHistorico(5);
+            await this.getHistorico(3);
+            await this.getHistorico(2);
+            await this.getHistorico(1);
+        } catch (err) {
+            console.log('Erro getAllHistoricos: ', err);
+        }
+    }
+
     async show10dias() {
         // console.log('10 dias OK');
         this.displayTela = this.naoLidos10dias;
         this.viewTag = 'Emails atrasados a mais de 10 Dias:';
         await this.formatData(this.displayTela);
-        await this.getHistorico(this.naoLidos10dias);
+        // await this.getHistorico(this.naoLidos10dias);
+        this.historico = this.hist10;
+        this.currentView = 10;
     }
 
     async show7dias() {
@@ -90,6 +115,8 @@ export class DashboardComponent implements OnInit {
         this.viewTag = 'Emails atrasados a mais de 7 Dias:';
         await this.formatData(this.displayTela);
         await this.getHistorico(this.naoLidos7dias);
+        this.historico = this.hist7;
+        this.currentView = 7;
     }
 
     async show5dias() {
@@ -97,7 +124,9 @@ export class DashboardComponent implements OnInit {
         this.displayTela = this.naoLidos5dias;
         this.viewTag = 'Emails atrasados a mais de 5 Dias:';
         await this.formatData(this.displayTela);
-        await this.getHistorico(this.naoLidos5dias);
+        // await this.getHistorico(this.naoLidos5dias);
+        this.historico = this.hist5;
+        this.currentView = 5;
     }
 
     async show3dias() {
@@ -105,7 +134,9 @@ export class DashboardComponent implements OnInit {
         this.displayTela = this.naoLidos3dias;
         this.viewTag = 'Emails atrasados a mais de 3 Dias:';
         await this.formatData(this.displayTela);
-        await this.getHistorico(this.naoLidos3dias);
+        // await this.getHistorico(this.naoLidos3dias);
+        this.historico = this.hist3;
+        this.currentView = 3;
     }
 
     async show2dias() {
@@ -113,7 +144,9 @@ export class DashboardComponent implements OnInit {
         this.displayTela = this.naoLidos2dias;
         this.viewTag = 'Emails atrasados a mais de 2 Dias:';
         await this.formatData(this.displayTela);
-        await this.getHistorico(this.naoLidos2dias);
+        // await this.getHistorico(this.naoLidos2dias);
+        this.historico = this.hist2;
+        this.currentView = 2;
     }
 
     async show1dia() {
@@ -121,15 +154,84 @@ export class DashboardComponent implements OnInit {
         this.displayTela = this.naoLidos1dia;
         this.viewTag = 'Emails atrasados a mais de 24 horas:';
         await this.formatData(this.displayTela);
-        await this.getHistorico(this.naoLidos1dia);
+        // await this.getHistorico(this.naoLidos1dia);
+        this.historico = this.hist1;
+        this.currentView = 1;
     }
 
-    async getHistorico(assunto: any) {
+    // async getHistorico(assunto: any) {
+    //     // console.log('getHistorico OK');
+    //     this.historico = [];
+    //     this.historico = await this.service.postHistoricoEmail(assunto);
+    //     // console.log('historico: ', this.historico);
+    //     await this.formatData(this.historico);
+    // }
+
+    async getHistorico(parm: number) {
+        if (parm === 10) {
+            this.naoLidos10dias.forEach(async (item: { assunto: string; }) => {
+                const aux = await this.service.postHistoricoEmail(item.assunto);
+                await this.formatData(aux);
+                this.hist10.push(aux)
+            });
+        }
+        if (parm === 7) {
+            this.naoLidos7dias.forEach(async (item: { assunto: string; }) => {
+                const aux = await this.service.postHistoricoEmail(item.assunto);
+                await this.formatData(aux);
+                this.hist7.push(aux)
+            });
+        }
+        if (parm === 5) {
+            this.naoLidos5dias.forEach(async (item: { assunto: string; }) => {
+                const aux = await this.service.postHistoricoEmail(item.assunto);
+                await this.formatData(aux);
+                this.hist5.push(aux)
+            });
+        }
+        if (parm === 3) {
+            this.naoLidos3dias.forEach(async (item: { assunto: string; }) => {
+                const aux = await this.service.postHistoricoEmail(item.assunto);
+                await this.formatData(aux);
+                this.hist3.push(aux)
+            });
+        }
+        if (parm === 2) {
+            this.naoLidos2dias.forEach(async (item: { assunto: string; }) => {
+                const aux = await this.service.postHistoricoEmail(item.assunto);
+                await this.formatData(aux);
+                this.hist2.push(aux)
+            });
+        }
+        if (parm === 1) {
+            this.naoLidos1dia.forEach(async (item: { assunto: string; }) => {
+                const aux = await this.service.postHistoricoEmail(item.assunto);
+                await this.formatData(aux);
+                this.hist1.push(aux)
+            });
+        }
+    }
+
+    async showHistorico(currentView: number, assunto: any) {
         // console.log('getHistorico OK');
-        this.historico = [];
-        this.historico = await this.service.postHistoricoEmail(assunto);
-        // console.log('historico: ', this.historico);
-        await this.formatData(this.historico);
+        if (currentView === 10) {
+            this.hist10.filter((item: { assunto: any; }) => {item.assunto = assunto})
+        }
+        if (currentView === 7) {
+            this.hist7.filter((item: { assunto: any; }) => { item.assunto = assunto })
+        }
+        if (currentView === 5) {
+            this.hist5.filter((item: { assunto: any; }) => { item.assunto = assunto })
+        }
+        if (currentView === 3) {
+            this.hist3.filter((item: { assunto: any; }) => { item.assunto = assunto })
+        }
+        if (currentView === 2) {
+            this.hist2.filter((item: { assunto: any; }) => { item.assunto = assunto })
+        }
+        if (currentView === 1) {
+            this.hist1.filter((item: { assunto: any; }) => { item.assunto = assunto })
+        }
     }
 
     async formatData(param: any) {
